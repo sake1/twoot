@@ -1,7 +1,8 @@
 import ActionList from "../actionList";
 
 export default function reducer(state={
-    user: {
+    user: null,
+    userTemplateDoNotUse: {
       id: null,
       username: null,
       password: null,

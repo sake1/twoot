@@ -57,13 +57,21 @@ export default function reducer(state={
         location: HOMEPAGE,
         error: null
       };
-    } else if(action.type == ActionList.ON_TWEET_FETCH_FAIL) {
+    } else if(action.type == ActionList.ON_TWEET_FETCH_FAIL
+      || action.type == ActionList.ON_TWEET_UPLOAD_FAIL
+      || action.type == ActionList.ON_TWEET_DELETE_FAIL
+      || action.type == ActionList.ON_TWEET_UPDATE_FAIL) {
       return {
         ...state,
         location: HOMEPAGE,
         error: JSON.stringify(action.payload)
       };
 ////////////////////////////////////////////////////////////////////////////////
+    } else if(action.type == ActionList.ON_INPUT_ERROR) {
+      return {
+        ...state,
+        error: JSON.stringify(action.payload)
+      };
     } else {
       return state;
     }

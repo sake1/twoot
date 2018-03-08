@@ -1,10 +1,11 @@
 import axios from "axios";
 import ActionList from "../actionList";
+import server from "../server"
 
 export function signin(user) {
   return dispatch => {
     dispatch({type: ActionList.ON_SIGNIN});
-    axios.post("http://192.168.200.163:8000/api/user/create", user)
+    axios.post(server + "/api/user/create", user)
       .then((response) => {
         dispatch({type: ActionList.ON_SIGNIN_SUCCESS, payload: response.data})
       })

@@ -1,19 +1,16 @@
 import React from "react"
-import { connect } from "react-redux"
 
-@connect((storage) => {
-  return {};
-})
 export default class ErrorDisplayer extends React.Component {
   render() {
-    console.log("error trace: ", this.props.message);
     const message = JSON.parse(this.props.message);
+    console.log("error trace: ", message);
     var errorString = "";
     if(message != null) {
       errorString = "ERROR";
-      if(message.hasOwnProperty("status") && message.hasOwnProperty("status")) {
-        errorString = errorString + " " + message.status + ": " + message.statusText;
+      if(message.hasOwnProperty("status")) {
+        errorString +=  " " + message.status + ":";
       }
+      errorString += " " + message.data.message;
     }
     return <div>
       <center>

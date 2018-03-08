@@ -5,8 +5,7 @@ import { login, gotoSignin } from "../actions/loginAction"
 
 @connect((storage) => {
   return {
-    username: storage.user.user.username,
-    password: storage.user.user.password,
+    user: JSON.parse(storage.user.user)
   };
 })
 export default class LoginForm extends React.Component {
@@ -14,8 +13,8 @@ export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: this.props.username,
-      password: this.props.password
+      username: this.props.user ? (this.props.user.hasOwnProperty("username") ? this.props.user.username : "") : "",
+      password: ""
     };
   }
 

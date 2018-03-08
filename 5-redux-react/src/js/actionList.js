@@ -1,19 +1,31 @@
 var ActionList = {
-  ON_LOGIN:              11,
-  ON_LOGIN_ERROR:        12,
-  ON_LOGIN_SUCCESS:      13,
-  ON_SIGNIN:             21,
-  ON_SIGNIN_ERROR:       22,
-  ON_SIGNIN_SUCCESS:     23,
-  ON_TWEET_FETCH:        31,
-  ON_TWEET_FETCHED:      32,
-  ON_TWEET_FETCH_FAIL:   33,
+  ON_LOGIN:              "login",
+  ON_LOGIN_ERROR:        "login_error",
+  ON_LOGIN_SUCCESS:      "login_success",
 
-  ON_GOTO_SIGNIN:        20,
-  ON_GOTO_LOGIN:         10,
-  ON_GOTO_HOMEPAGE:      30,
+  ON_SIGNIN:             "signin",
+  ON_SIGNIN_ERROR:       "signin_error",
+  ON_SIGNIN_SUCCESS:     "signin_success",
 
-  CLEAR_USER_INFO:       101,
+  ON_TWEET_FETCH:        "fetching_tweets",
+  ON_TWEET_FETCHED:      "tweets_fetched",
+  ON_TWEET_FETCH_FAIL:   "fetching_tweet_fail",
+  ON_TWEET_UPLOADED:     "upload_tweet",
+  ON_TWEET_UPLOAD_FAIL:  "tweet_uplaod_fail",
+  ON_TWEET_DELETED:      "tweet_deleted",
+  ON_TWEET_DELETE_FAIL:  "tweet_delete_fail",
+  ON_TWEET_SELECTED:     "select_this_tweet",
+  ON_TWEET_DESELECTED:   "deselect_this_tweet",
+  ON_TWEET_UPDATED:      "tweet_updated",
+  ON_TWEET_UPDATE_FAIL:  "tweet_update_fail",
+
+  ON_INPUT_ERROR:        "input_error",
+
+  ON_GOTO_SIGNIN:        "redirect_signin",
+  ON_GOTO_LOGIN:         "redirect_login",
+  ON_GOTO_HOMEPAGE:      "redirect_homepage",
+
+  CLEAR_USER_INFO:       "clear_user_info",
 };
 
 export default(ActionList);

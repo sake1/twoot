@@ -1,11 +1,13 @@
 import axios from "axios";
 import ActionList from "../actionList";
+import server from "../server"
 
 export function login(user) {
   return dispatch => {
     dispatch({type: ActionList.ON_LOGIN});
-    axios.post("http://192.168.200.163:8000/api/login", user)
+    axios.post(server + "/api/login", user)
       .then((response) => {
+        console.log(response);
         dispatch({type: ActionList.ON_LOGIN_SUCCESS, payload: response.data})
       })
       .catch((err) => {
