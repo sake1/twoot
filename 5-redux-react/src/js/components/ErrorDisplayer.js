@@ -10,7 +10,11 @@ export default class ErrorDisplayer extends React.Component {
       if(message.hasOwnProperty("status")) {
         errorString +=  " " + message.status + ":";
       }
-      errorString += " " + message.data.message;
+      if(message.hasOwnProperty("data")) {
+        if(message.data.hasOwnProperty("message")) {
+          errorString += " " + message.data.message;
+        }
+      }
     }
     return <div>
       <center>

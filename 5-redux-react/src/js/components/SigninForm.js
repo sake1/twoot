@@ -1,12 +1,11 @@
 import React from "react"
 import { connect } from "react-redux"
+import { compose } from "recompose"
 
 import { signin, gotoLogin } from "../actions/signinAction"
+import ActionList from "../actionList";
 
-@connect((storage) => {
-  return {};
-})
-export default class SigninForm extends React.Component {
+class SigninForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -18,17 +17,18 @@ export default class SigninForm extends React.Component {
     };
   }
 
-  login() {
-    console.log("sampe");
-    this.props.dispatch(gotoLogin());
-  }
-
-  signin() {
-    this.props.dispatch(signin(this.state));
-  }
+  // login() {
+  //   console.log("sampe");
+  //   this.props.dispatch(gotoLogin());
+  // }
+  //
+  // signin() {
+  //   this.props.dispatch(signin(this.state));
+  // }
 
   render() {
     return <div>
+      <h1><b> REGISTER TO TWOOT </b></h1>
       <div>
         Username: <input
           type="text"
@@ -53,8 +53,8 @@ export default class SigninForm extends React.Component {
         value={this.state.birthdate}
         onChange={evt => this.updateBirthdate(evt)} />
       </div>
-      <button onClick={() => this.login()}> LOGIN </button>
-      <button onClick={() => this.signin()}> SIGNIN </button>
+      <button onClick={this.props.gotoLogin}> LOGIN </button>
+      <button onClick={this.props.signin(this.state)}> SIGNIN </button>
     </div>
   }
 
@@ -82,3 +82,26 @@ export default class SigninForm extends React.Component {
     });
   }
 }
+
+const mapStateToProps = function(storage) {
+  return {}
+}
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    signin: user => event => dispatch({
+      type: ActionList.ON_SIGNIN,
+      payload: user
+    }),
+    gotoLogin: event => dispatch({
+      type: ActionList.ON_GOTO_LOGIN,
+    })
+  }
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(SigninForm);

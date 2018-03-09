@@ -1,14 +1,16 @@
 import React from "react"
 import { connect } from "react-redux"
+import { compose } from "recompose"
 
 import { login, gotoSignin } from "../actions/loginAction"
+import ActionList from "../actionList";
 
-@connect((storage) => {
-  return {
-    user: JSON.parse(storage.user.user)
-  };
-})
-export default class LoginForm extends React.Component {
+// @connect((storage) => {
+//   return {
+//     user: JSON.parse(storage.user.user)
+//   };
+// })
+class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -18,16 +20,17 @@ export default class LoginForm extends React.Component {
     };
   }
 
-  login() {
-    this.props.dispatch(login(this.state));
-  }
-
-  signin() {
-    this.props.dispatch(gotoSignin());
-  }
+  // login() {
+  //   this.props.dispatch(login(this.state));
+  // }
+  //
+  // signin() {
+  //   this.props.dispatch(gotoSignin());
+  // }
 
   render() {
     return <div>
+      <h1><b> TWOOT </b></h1>
       <div>
         Username: <input
           type="text"
@@ -40,8 +43,8 @@ export default class LoginForm extends React.Component {
         value={this.state.password}
         onChange={evt => this.updatePassword(evt)} />
       </div>
-      <button onClick={() => this.login()}> LOGIN </button>
-      <button onClick={() => this.signin()}> SIGNIN </button>
+      <button onClick={this.props.login(this.state)}> LOGIN </button>
+      <button onClick={this.props.gotoSignin}> SIGNIN </button>
     </div>
   }
 
@@ -57,3 +60,28 @@ export default class LoginForm extends React.Component {
     });
   }
 }
+
+const mapStateToProps = function(storage) {
+  return {
+    user: JSON.parse(storage.user.user)
+  }
+}
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    login: user => event => dispatch({
+      type: ActionList.ON_LOGIN,
+      payload: user
+    }),
+    gotoSignin: event => dispatch({
+      type: ActionList.ON_GOTO_SIGNIN,
+    })
+  }
+}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(LoginForm);
