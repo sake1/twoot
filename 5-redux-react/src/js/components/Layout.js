@@ -10,6 +10,10 @@ import LoginForm from "./LoginForm"
 import SigninForm from "./SigninForm"
 import ErrorDisplayer from "./ErrorDisplayer"
 
+import '@progress/kendo-theme-default/dist/all.css';
+import { Grid } from '@progress/kendo-react-grid';
+import { Button } from '@progress/kendo-react-buttons';
+
 // @connect((storage) => {
 //   return {
 //     code_login    : storage.appNavigator.code_login,

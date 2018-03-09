@@ -5,6 +5,11 @@ import { compose } from "recompose"
 import { login, gotoSignin } from "../actions/loginAction"
 import ActionList from "../actionList";
 
+import '@progress/kendo-theme-default/dist/all.css';
+import { Grid } from '@progress/kendo-react-grid';
+import { Button } from '@progress/kendo-react-buttons';
+
+
 // @connect((storage) => {
 //   return {
 //     user: JSON.parse(storage.user.user)
@@ -43,8 +48,8 @@ class LoginForm extends React.Component {
         value={this.state.password}
         onChange={evt => this.updatePassword(evt)} />
       </div>
-      <button onClick={this.props.login(this.state)}> LOGIN </button>
-      <button onClick={this.props.gotoSignin}> SIGNIN </button>
+      <Button primary={true} onClick={this.props.login(this.state)}> LOGIN </Button>
+      <Button onClick={this.props.gotoSignin}> SIGNIN </Button>
     </div>
   }
 
